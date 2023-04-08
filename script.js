@@ -2,6 +2,7 @@ const itemForm = document.getElementById("item-form");
 const itemInput = document.getElementById("item-input");
 const itemList = document.getElementById("item-list");
 const itemClear = document.getElementById("clear");
+const itemFilter = document.getElementById("filter");
 
 const addItem = (e) => {
   e.preventDefault();
@@ -56,8 +57,21 @@ const clearItems = () => {
   checkUI();
 };
 
+function filterItems(e) {
+  const text = e.target.value.toLowerCase();
+  const items = itemList.querySelectorAll("li");
+  items.forEach((item) => {
+    const itemName = item.firstChild.textContent;
+    if (itemName.toLowerCase().indexOf(text) != -1) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
+
 const checkUI = () => {
-  const itemFilter = document.getElementById("filter");
+  const items = itemList.querySelectorAll("li");
   if (itemList.children.length === 0) {
     itemClear.style.display = "none";
     itemFilter.style.display = "none";
@@ -71,5 +85,6 @@ const checkUI = () => {
 itemForm.addEventListener("submit", addItem);
 itemList.addEventListener("click", removeItem);
 itemClear.addEventListener("click", clearItems);
+itemFilter.addEventListener("input", filterItems);
 
 checkUI();
