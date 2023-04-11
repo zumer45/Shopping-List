@@ -49,6 +49,10 @@ header h1 {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 }
 
+.edit-mode {
+  color: rgba(0, 0, 0, 0.2);
+}
+
 /* Form & Input */
 .form-input {
   width: 100%;
